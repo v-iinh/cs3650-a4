@@ -277,6 +277,6 @@ int main(int argc, char **argv) {
     return munit_suite_main(&suite_big, NULL, argc - 1, argv + 1);
   }
   else {
-    return munit_suite_main(&suite_small, NULL, argc, argv);    
+    return munit_suite_main(&suite_small, NULL, argc, argv);
   }
 }
