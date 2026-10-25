@@ -22,6 +22,16 @@ struct vect {
   unsigned int capacity;   /* Maximum number of items the vector can hold before growing. */
 };
 
+/** Make a heap copy of a string. */
+static char *copy_string(const char *s) {
+  assert(s != NULL);
+  size_t len = strlen(s);
+  char *copy = malloc(len + 1);
+  assert(copy != NULL);
+  memcpy(copy, s, len + 1);
+  return copy;
+}
+
 /** Construct a new empty vector. */
 vect_t *vect_new() {
   vect_t *v = malloc(sizeof(vect_t));
@@ -61,13 +71,7 @@ char *vect_get_copy(vect_t *v, unsigned int idx) {
   assert(v != NULL);
   assert(idx < v->size);
 
-  char *copy = malloc(strlen(v->data[idx]) + 1);
-  if (copy == NULL) {
-    return NULL;
-  }
-  strcpy(copy, v->data[idx]);
-
-  return copy;
+  return copy_string(v->data[idx]);
 }
 /** Set the element at the given index. */
 void vect_set(vect_t *v, unsigned int idx, const char *elt) {
